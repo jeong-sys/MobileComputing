@@ -138,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.result:
 
-                // 숫자를 입력하지 않고 연산자나 = 누르는 경우
                 if(current.equals("")){
                     Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                 }
