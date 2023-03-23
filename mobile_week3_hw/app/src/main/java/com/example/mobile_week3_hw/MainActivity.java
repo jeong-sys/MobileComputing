@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.plus:
                 if(current.equals("")){
-                    Toast.makeText(getApplicationContext(), "숫자를 입력주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     stored = Double.parseDouble(current);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.minus:
                 if(current.equals("")){
-                    Toast.makeText(getApplicationContext(), "숫자를 입력주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     stored = Double.parseDouble(current);
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.mul:
                 if(current.equals("")){
-                    Toast.makeText(getApplicationContext(), "숫자를 입력주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     stored = Double.parseDouble(current);
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.div:
                 if(current.equals("")){
-                    Toast.makeText(getApplicationContext(), "숫자를 입력주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     stored = Double.parseDouble(current);
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // 숫자를 입력하지 않고 연산자나 = 누르는 경우
                 if(current.equals("")){
-                    Toast.makeText(getApplicationContext(), "숫자를 입력주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                 }
 
                 else{
