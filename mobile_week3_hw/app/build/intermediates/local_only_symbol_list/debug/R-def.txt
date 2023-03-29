@@ -1,0 +1,31 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id num_0
+id num_1
+id num_2
+id num_3
+id num_4
+id num_5
+id num_6
+id num_7
+id num_8
+id num_9
+id plus
+id result
+id text
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.Mobile_week3_hw
+xml backup_rules
+xml data_extraction_rules
