@@ -13,13 +13,13 @@
         android:orientation="vertical">
 
         <Button
-            android:layout_width="150"
-            android:layout_height="50"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:text="버튼1"/>
 
         <Button
-            android:layout_width="150"
-            android:layout_height="50"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:text="버튼2"/>
 
     </LinearLayout>
@@ -31,13 +31,13 @@
         android:gravity="center">
 
         <Button
-            android:layout_width="150"
-            android:layout_height="50"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:text="버튼3"/>
 
         <Button
-            android:layout_width="150"
-            android:layout_height="50"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:text="버튼4"/>
 
     </LinearLayout>
@@ -49,13 +49,13 @@
         android:gravity="center">
 
         <Button
-            android:layout_width="150"
-            android:layout_height="50"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:text="버튼5" />
 
         <Button
-            android:layout_width="150"
-            android:layout_height="50"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:text="버튼6"/>
 
     </LinearLayout>
