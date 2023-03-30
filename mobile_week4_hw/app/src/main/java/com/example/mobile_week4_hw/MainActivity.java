@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         check_1.setOnCheckedChangeListener(mCheckListener);
         check_2.setOnCheckedChangeListener(mCheckListener);
-
         rGroup_1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -82,13 +81,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(i == R.id.Matrix){
-
                     img_view.setScaleType(ImageView.ScaleType.MATRIX);
                     Matrix matrix = img_view.getImageMatrix();
-                    float scale = 0.5f;
+                    float scale = 2.0f;
                     matrix.setScale(scale, scale);
                     img_view.setImageMatrix(matrix);
-
                 }
 
                 if(i == R.id.fitXY){
@@ -97,11 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if(i == R.id.center){
                     img_view.setScaleType(ImageView.ScaleType.CENTER);
-
                 }
             }
         });
-
     }
 
     CompoundButton.OnCheckedChangeListener mCheckListener = new CompoundButton.OnCheckedChangeListener() {
@@ -122,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 rGroup_2.setVisibility(android.view.View.VISIBLE);
                 img_view.setImageResource(R.drawable.daysix);
             }
-
         }
     };
 }
