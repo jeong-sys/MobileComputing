@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Chronometer
+        android:id="@+id/chronometer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:format="시간 측정 : %s"
+        android:gravity="center"
+        android:textSize="30dp"/>
+
+<!--    <CalendarView-->
+<!--        android:id="@+id/calendarView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:showWeekNumber="false"/>-->
+
+    <DatePicker
+        android:timePickerMode="spinner"
+        android:id="@+id/datePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0000"/>
+
+    <Button
+        android:id="@+id/Start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="START"/>
+
+    <Button
+        android:id="@+id/END"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="END"/>
+
+
+</LinearLayout>
