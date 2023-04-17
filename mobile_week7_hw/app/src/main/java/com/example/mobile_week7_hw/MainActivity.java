@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 nameTextView.setText(R.string.nav_header_title);
                 emailTextView.setText(R.string.nav_header_subtitle);
                 profileImageView.setImageResource(R.mipmap.ic_launcher_round);
+                slideshowMenuItem.setTitle("Slideshow");
 
                 return true;
             }
