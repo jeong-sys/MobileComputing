@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobile_week7_hw.ui.slideshow.SlideshowFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -39,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.appBarMain.toolbar);
-
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -60,8 +60,27 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-    }
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem slideshowMenuItem = menu.findItem(R.id.nav_slideshow);
+        slideshowMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // 로그아웃 : NavigationView의 Header View에서 이름, 이메일, 이미지 기본값 변경
+                View headerView = navigationView.getHeaderView(0);
+                TextView nameTextView = headerView.findViewById(R.id.n_name);
+                TextView emailTextView = headerView.findViewById(R.id.n_mail);
+                ImageView profileImageView = headerView.findViewById(R.id.n_photo);
+
+                nameTextView.setText(R.string.nav_header_title);
+                emailTextView.setText(R.string.nav_header_subtitle);
+                profileImageView.setImageResource(R.mipmap.ic_launcher_round);
+
+                return true;
+            }
+        });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -84,26 +103,7 @@ public class MainActivity extends AppCompatActivity {
             show_alertdialog();
         }
 
-        if (id == R.id.nav_slideshow){
-            logout();
-        }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void logout(){
-
-        isLoggedIn = false;
-        View headerView = navigationView.getHeaderView(0);
-        // Header View의 TextView와 ImageView 객체 가져오기
-        TextView nameTextView = headerView.findViewById(R.id.n_name);
-        TextView emailTextView = headerView.findViewById(R.id.n_mail);
-        ImageView profileImageView = headerView.findViewById(R.id.n_photo);
-
-        // Header View의 TextView와 ImageView의 값을 기본 값으로 변경
-        nameTextView.setText(R.string.nav_header_title);
-        emailTextView.setText(R.string.nav_header_subtitle);
-        profileImageView.setImageResource(R.mipmap.ic_launcher_round);
-
     }
 
     private void show_alertdialog(){
@@ -112,23 +112,21 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("사용자 입력");
         builder.setIcon(R.mipmap.ic_launcher);
 
-        // set the custom layout
+        // alertdialog.xml설정
         View alertdialog = getLayoutInflater().inflate(R.layout.alertdialog, null);
         builder.setView(alertdialog);
 
-        // get references to the views in the custom layout
         EditText editName = alertdialog.findViewById(R.id.editname);
         EditText editMail = alertdialog.findViewById(R.id.editmail);
         RadioGroup radioGroup = alertdialog.findViewById(R.id.radio_group);
 
-        // set up the radio group
         RadioButton dog = alertdialog.findViewById(R.id.dog);
         RadioButton cat = alertdialog.findViewById(R.id.cat);
         RadioButton horse = alertdialog.findViewById(R.id.horse);
 
-        // set the positive and negative buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
+        // Navigation View의 Header View : 이름과 email, 사진을 교체
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -137,14 +135,14 @@ public class MainActivity extends AppCompatActivity {
                 String name = editName.getText().toString();
                 String email = editMail.getText().toString();
                 int selectedId = radioGroup.getCheckedRadioButtonId();
-                String photoType = "";
+                String photo = "";
 
                 if (selectedId == dog.getId()) {
-                    photoType = "dog";
+                    photo = "dog";
                 } else if (selectedId == cat.getId()) {
-                    photoType = "cat";
+                    photo = "cat";
                 } else if (selectedId == horse.getId()) {
-                    photoType = "horse";
+                    photo = "horse";
                 }
 
                 NavigationView navigationView = findViewById(R.id.nav_view);
@@ -156,24 +154,24 @@ public class MainActivity extends AppCompatActivity {
                 headerName.setText(name);
                 headerEmail.setText(email);
 
-                if (photoType.equals("dog")) {
+                if (photo.equals("dog")) {
                     headerPhoto.setImageResource(R.drawable.dog);
-                } else if (photoType.equals("cat")) {
+                } else if (photo.equals("cat")) {
                     headerPhoto.setImageResource(R.drawable.cat);
-                } else if (photoType.equals("horse")) {
+                } else if (photo.equals("horse")) {
                     headerPhoto.setImageResource(R.drawable.horse);
                 }
 
-                //###### slideshow 메뉴 로그아웃 변경
+                //slideshow 메뉴 로그아웃 변경
                 Menu menu = navigationView.getMenu();
                 MenuItem slideshowMenuItem = menu.findItem(R.id.nav_slideshow);
 
                 if (isLoggedIn) {
                     slideshowMenuItem.setTitle("로그아웃");
                 }
-                //###########################
 
-                Toast.makeText(MainActivity.this, "Name: " + name + ", Email: " + email + ", Photo Type: " + photoType, Toast.LENGTH_SHORT).show();
+                // 선택한 것 Toast출력
+                Toast.makeText(MainActivity.this,"Name: "+name+",Email: "+email+",Photo: "+photo,Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -187,6 +185,5 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
 }
