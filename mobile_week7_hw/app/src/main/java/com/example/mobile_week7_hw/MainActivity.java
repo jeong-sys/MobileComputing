@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private boolean isLoggedIn = false;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -79,7 +83,27 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.login){
             show_alertdialog();
         }
+
+        if (id == R.id.nav_slideshow){
+            logout();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logout(){
+
+        isLoggedIn = false;
+        View headerView = navigationView.getHeaderView(0);
+        // Header View의 TextView와 ImageView 객체 가져오기
+        TextView nameTextView = headerView.findViewById(R.id.n_name);
+        TextView emailTextView = headerView.findViewById(R.id.n_mail);
+        ImageView profileImageView = headerView.findViewById(R.id.n_photo);
+
+        // Header View의 TextView와 ImageView의 값을 기본 값으로 변경
+        nameTextView.setText(R.string.nav_header_title);
+        emailTextView.setText(R.string.nav_header_subtitle);
+        profileImageView.setImageResource(R.mipmap.ic_launcher_round);
+
     }
 
     private void show_alertdialog(){
@@ -104,24 +128,56 @@ public class MainActivity extends AppCompatActivity {
 
         // set the positive and negative buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+                isLoggedIn = true;
+
                 String name = editName.getText().toString();
                 String email = editMail.getText().toString();
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 String photoType = "";
 
                 if (selectedId == dog.getId()) {
-                    photoType = "Photo 1";
+                    photoType = "dog";
                 } else if (selectedId == cat.getId()) {
-                    photoType = "Photo 2";
+                    photoType = "cat";
                 } else if (selectedId == horse.getId()) {
-                    photoType = "Photo 3";
+                    photoType = "horse";
                 }
+
+                NavigationView navigationView = findViewById(R.id.nav_view);
+                View headerView = navigationView.getHeaderView(0);
+                TextView headerName = headerView.findViewById(R.id.n_name);
+                TextView headerEmail = headerView.findViewById(R.id.n_mail);
+                ImageView headerPhoto = headerView.findViewById(R.id.n_photo);
+
+                headerName.setText(name);
+                headerEmail.setText(email);
+
+                if (photoType.equals("dog")) {
+                    headerPhoto.setImageResource(R.drawable.dog);
+                } else if (photoType.equals("cat")) {
+                    headerPhoto.setImageResource(R.drawable.cat);
+                } else if (photoType.equals("horse")) {
+                    headerPhoto.setImageResource(R.drawable.horse);
+                }
+
+                //###### slideshow 메뉴 로그아웃 변경
+                Menu menu = navigationView.getMenu();
+                MenuItem slideshowMenuItem = menu.findItem(R.id.nav_slideshow);
+
+                if (isLoggedIn) {
+                    slideshowMenuItem.setTitle("로그아웃");
+                }
+                //###########################
 
                 Toast.makeText(MainActivity.this, "Name: " + name + ", Email: " + email + ", Photo Type: " + photoType, Toast.LENGTH_SHORT).show();
             }
         });
+
+        // cancel
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
