@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:orientation="vertical"
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="TextView" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/sharedPreSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sharedPreSave"
+            android:onClick="sharedPreferencesSaveClick"/>
+
+        <Button
+            android:id="@+id/sharedPreLoad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SharedPreload"
+            android:onClick="sharedPreferencesLoadClick"/>
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:onClick="clearText"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/internalSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="internalSave"
+            android:onClick="internalSaveClick"/>
+
+        <Button
+            android:id="@+id/internalLoad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="internalLoad"
+            android:onClick="internalLoadClick"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/externalSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="externalSave"
+            android:onClick="externalSaveClick"/>
+
+        <Button
+            android:id="@+id/externalLoad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="externalLoad"
+            android:onClick="externalLoadClick"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/copy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="copy"
+            android:onClick="copyClick"/>
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="delete"
+            android:onClick="deleteClick"/>
+
+        <Button
+            android:id="@+id/showImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="showImage"
+            android:onClick="showimageClick"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ImageView>
+
+</LinearLayout>
