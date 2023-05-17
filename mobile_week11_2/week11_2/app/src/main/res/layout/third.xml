@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btn_backtosecond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BACK(FINISH())"
+        android:onClick="backClick"/>
+
+    <Button
+        android:id="@+id/btn_thirdagain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="third again"
+        android:onClick = "thirdClick"/>
+
+    <Button
+        android:id="@+id/btn_thirdtomain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="return to main"
+        android:onClick = "returnMain"/>
+</LinearLayout>
