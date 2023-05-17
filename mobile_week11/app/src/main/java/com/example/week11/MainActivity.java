@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     final static int LINE = 1, CIRCLE = 2, RECT=3;
@@ -24,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new MyGraphicView(this));
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static class MyGraphicView extends View {
+        ArrayList<KeepShape> myShapeList = new ArrayList<>();
+        KeepShape current;
         int startX = -1, startY = -1, stopX = -1, stopY = -1;
 
         public MyGraphicView(Context context) {
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case MotionEvent.ACTION_MOVE:
                     Log.d("hwang", "move:x=" + event.getX() + "  y=" + event.getY()+ "  RawX="+event.getRawX()+" RawY="+event.getRawY());
+                    break;
                 case MotionEvent.ACTION_UP:
                     stopX = (int) event.getX();
                     stopY = (int) event.getY();
@@ -84,20 +88,48 @@ public class MainActivity extends AppCompatActivity {
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.RED);
 
-            switch (curShape) {
+            current = new KeepShape(curShape, startX, startY, stopX, stopY, paint);
+            myShapeList.add(current);
+
+            for (KeepShape cshape: myShapeList)
+                draw_shape(cshape, canvas);
+
+            if (current != null)
+                draw_shape(current, canvas);
+
+        }
+
+        public void draw_shape(KeepShape keepShape, Canvas canvas) {
+
+            switch (keepShape.shape_type) {
                 case LINE:
-                    canvas.drawLine(startX, startY, stopX, stopY, paint);
+                    canvas.drawLine(keepShape.startX, keepShape.startY, keepShape.stopX, keepShape.stopY, keepShape.paint);
                     break;
                 case CIRCLE:
-                    int radius = (int) Math.sqrt(Math.pow(stopX - startX, 2)
-                            + Math.pow(stopY - startY, 2));
-                    canvas.drawCircle(startX, startY, radius, paint);
+                    int radius = (int) Math.sqrt(Math.pow(keepShape.stopX - keepShape.startX, 2)
+                            + Math.pow(keepShape.stopY - keepShape.startY, 2));
+                    canvas.drawCircle(keepShape.startX, keepShape.startY, radius, keepShape.paint);
                     break;
 
                 case RECT:
-                    Rect rect = new Rect(startX, startY, stopX, stopY);
-                    canvas.drawRect(rect,paint);
+                    Rect rect = new Rect(keepShape.startX, keepShape.startY, keepShape.stopX, keepShape.stopY);
+                    canvas.drawRect(rect,keepShape.paint);
                     break;
+            }
+        }
+
+        private static class KeepShape{
+            Paint paint;
+            int shape_type, startX, startY, stopX, stopY;
+
+            public KeepShape(int shape_type, int startX, int startY, int stopX, int stopY, Paint paint){
+                this.shape_type = shape_type;
+                this.startX = startX;
+                this.startY = startY;
+                this.stopX = stopX;
+                this.stopY = stopY;
+                this.paint = paint;
+                paint.setColor(Color.RED);
             }
         }
     }
