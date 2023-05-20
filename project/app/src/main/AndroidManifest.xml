@@ -24,7 +24,9 @@
         <activity
             android:name=".Second_Activity"
             android:label="second activity"
-            android:exported="true"/>
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

@@ -90,6 +90,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Log.d("MainActivity","onActivityResult() called");
     }
 }
