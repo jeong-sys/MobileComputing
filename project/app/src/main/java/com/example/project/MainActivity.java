@@ -1,5 +1,6 @@
 package com.example.project;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             } catch (ApiException e) {
                 // 로그인 실패
                 e.printStackTrace();
+                String msg = "로그인에 실패하였습니다";
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
             }
         }
 
