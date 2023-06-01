@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 Cursor cursor;
                 cursor = sqlDB.rawQuery("SELECT * FROM groupTBL;", null);
 
-                String strName = "그룹이름"+ "\r\n" + "-----------" + "\r\n";
-                String strNum = "인원"+ "\r\n" + "-----------" + "\r\n";
+                String strName = "\n\n\n"+"그룹이름"+ "\r\n" + "------" + "\r\n";
+                String strNum = "\n\n\n"+"인원"+ "\r\n" + "------" + "\r\n";
 
                 while (cursor.moveToNext()){
                     strName += cursor.getString(0)+"\r\n";
@@ -77,13 +77,14 @@ public class MainActivity extends AppCompatActivity {
             sqlDB = myDb.getWritableDatabase();
             sqlDB.execSQL("UPDATE groupTBL SET gNumber ='"+editpeople.getText().toString()+"' WHERE gName = '"+editName.getText().toString()+"';");
             sqlDB.close();
+            Toast.makeText(getApplicationContext(), "수정됨", Toast.LENGTH_SHORT).show();
         });
 
         btnDelete.setOnClickListener((v)->{
             sqlDB = myDb.getWritableDatabase();
             sqlDB.execSQL("DELETE FROM groupTBL WHERE gName ='"+editName.getText().toString()+"';");
             sqlDB.close();
+            Toast.makeText(getApplicationContext(), "삭제됨", Toast.LENGTH_SHORT).show();
         });
-
     }
 }
