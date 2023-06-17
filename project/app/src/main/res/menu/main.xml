@@ -3,13 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/logout"
-        android:orderInCategory="100"
-        android:title="로그아웃"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/id"
+        android:id="@+id/menu_change_nickname"
         android:orderInCategory="100"
         android:title="별명 변경"
         app:showAsAction="never" />

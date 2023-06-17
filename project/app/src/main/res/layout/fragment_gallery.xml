@@ -62,14 +62,4 @@
 
     </ListView>
 
-    <Button
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:backgroundTint="@color/lovely"
-        android:text="추천 준비물 리스트 보러가기"
-        android:textColor="@color/black"/>
-
 </LinearLayout>
